@@ -1,19 +1,16 @@
 import { FC, ReactNode } from "react";
-import { Navigate, Navigator } from "react-router-dom";
-import Login from "../pages/Login";
+import { Navigate } from "react-router-dom";
 
 interface AuthProps {
   children: ReactNode;
   isAuth?: boolean;
 }
 
-const Auth = (props: AuthProps) => {
-  const { children, isAuth } = props;
+const Auth: FC<AuthProps> = ({ children, isAuth }) => {
   if (isAuth) {
-    Navigate({ to: "/login" });
-    return null;
+    return <Navigate to="/login" replace={true} />;
   } else {
-    return children;
+    return <>{children}</>;
   }
 };
 export default Auth;
