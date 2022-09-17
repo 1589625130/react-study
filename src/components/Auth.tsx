@@ -7,6 +7,8 @@ interface AuthProps {
 }
 
 const Auth: FC<AuthProps> = ({ children, isAuth }) => {
+  // 设置默认值为false不校验是否登陆
+  isAuth = false;
   if (isAuth) {
     return <Navigate to="/login" replace={true} />;
   } else {

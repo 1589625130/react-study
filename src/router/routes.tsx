@@ -4,6 +4,7 @@ import { lazy } from "react";
 const IndexPage = lazy(() => import("../pages/IndexPage"));
 const AboutPage = lazy(() => import("../pages/AboutPage"));
 const LoginPage = lazy(() => import("../pages/Login"));
+const AboutInfo = lazy(() => import("../pages/about/AboutInfo"));
 const routes: Array<RouterType> = [
   {
     path: "/",
@@ -22,6 +23,14 @@ const routes: Array<RouterType> = [
     name: "about",
     element: <AboutPage />,
     isAuth: true,
+    children: [
+      {
+        path: "",
+        name: "info",
+        element: <AboutInfo />,
+        isAuth: true,
+      },
+    ],
   },
 ];
 export default routes;
