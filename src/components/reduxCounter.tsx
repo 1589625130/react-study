@@ -1,28 +1,35 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment } from "../store/counter";
-import { RootState } from "../app/store";
+import { decrement, increment, incrementByAmount } from "../store/counter";
+import { useAppDispatch, useAppSelector } from "../store/hook";
+import { Button } from "antd";
 
 export default function Counter() {
-  const count = useSelector((state: RootState) => state.counter.count);
-  const dispatch = useDispatch();
+  const count = useAppSelector((state) => state.counter.count);
+  const dispatch = useAppDispatch();
 
   return (
     <div>
       <div>
-        <button
+        <Button
           aria-label="Increment value"
           onClick={() => dispatch(increment())}
         >
           Increment
-        </button>
+        </Button>
         <span>{count}</span>
-        <button
+        <Button
           aria-label="Decrement value"
           onClick={() => dispatch(decrement())}
         >
           Decrement
-        </button>
+        </Button>
+        <Button
+          onClick={() => {
+            dispatch(incrementByAmount(123));
+          }}
+        >
+          测试传参
+        </Button>
       </div>
     </div>
   );

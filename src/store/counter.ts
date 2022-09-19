@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { message } from "antd";
 
 interface CounterState {
   count: number;
@@ -11,16 +12,21 @@ const counter = createSlice({
   }),
   reducers: {
     increment: (state) => {
-      console.log("increment");
       state.count += 1;
     },
     decrement: (state) => {
-      console.log("decrement");
+      if (state.count === 0) {
+        void message.error("Count cannot be less than 0");
+        return;
+      }
       state.count -= 1;
+    },
+    incrementByAmount: (state, action: PayloadAction<number>) => {
+      state.count += action.payload;
     },
   },
 });
 
-export const { increment, decrement } = counter.actions;
+export const { increment, decrement, incrementByAmount } = counter.actions;
 
 export default counter.reducer;
