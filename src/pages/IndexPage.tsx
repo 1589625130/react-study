@@ -8,7 +8,7 @@ interface IndexPageProps {
 }
 
 const IndexPage: FC<IndexPageProps> = (props): ReactElement => {
-    const {} = props;
+  const {} = props;
   console.log("渲染");
   return (
     <div>
