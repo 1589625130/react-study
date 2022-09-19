@@ -1,6 +1,5 @@
-import todoStore from "./todoStore";
-import { combineReducers } from "redux";
+import counterReducer from "./counter";
 
-export default combineReducers({
-  todoStore,
-});
+export default {
+  counter: counterReducer,
+};
