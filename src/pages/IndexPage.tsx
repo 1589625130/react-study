@@ -1,6 +1,7 @@
 import { FC, ReactElement } from "react";
 import { Link } from "react-router-dom";
 import ClickCounter from "../components/ClickCounter";
+import ViewCounter from "../components/ViewCounter";
 
 interface IndexPageProps {
   content?: string;
@@ -14,6 +15,7 @@ const IndexPage: FC<IndexPageProps> = (props): ReactElement => {
     <div>
       <Link to="/about">aboutPage</Link>
       <ClickCounter />
+      <ViewCounter />
     </div>
   );
 };
