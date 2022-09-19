@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactElement, ReactNode } from "react";
 import { Navigate } from "react-router-dom";
 
 interface AuthProps {
@@ -6,7 +6,7 @@ interface AuthProps {
   isAuth?: boolean;
 }
 
-const Auth: FC<AuthProps> = ({ children, isAuth }) => {
+const Auth: FC<AuthProps> = ({ children, isAuth }): ReactElement => {
   // 设置默认值为false不校验是否登陆
   isAuth = false;
   if (isAuth) {
