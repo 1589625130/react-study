@@ -1,4 +1,4 @@
-import WithCounter, { CounterProps } from "../hoc/WithCounter";
+import WithCounter, { CounterProps } from "@/hoc/WithCounter";
 
 const ClickCounter = WithCounter((props: CounterProps) => {
   const { count, incrementCount } = props;

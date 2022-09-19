@@ -1,6 +1,6 @@
 import React from "react";
-import { decrement, increment, incrementByAmount } from "../store/counter";
-import { useAppDispatch, useAppSelector } from "../store/hook";
+import { decrement, increment, incrementByAmount } from "@/store/counter";
+import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { Button } from "antd";
 
 export default function Counter() {
