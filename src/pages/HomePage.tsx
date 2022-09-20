@@ -1,27 +1,40 @@
-import { FC, useState } from "react";
-import "./homePage.css";
+import { FC, useEffect } from 'react'
+import { Avatar, Divider, List } from 'antd'
+import { getCommentList, selectCommentList, selectCommentStatus } from '@/store/comment'
+import { useAppDispatch, useAppSelector } from '@/store/hook'
 
-import { Animated, AnimatedProps } from "react-animated-css";
-import "./assets/css/animeta.css";
+const HomePage: FC = () => {
+  const dispatch = useAppDispatch()
+  const commentList = useAppSelector(selectCommentList)
+  const commentStatus = useAppSelector(selectCommentStatus)
+  useEffect(() => {
+    if (commentStatus === 'idle') {
+      console.log('commentStatus', commentStatus)
+      dispatch(getCommentList({}))
+    }
+  }, [commentStatus])
 
-const App: FC = () => {
-  const [visible, setVisible] = useState<boolean>(true);
-  const animatedProps: AnimatedProps = {
-    animationIn: "bounceInLeft",
-    animationOut: "bounceOutRight",
-    isVisible: visible,
-  };
-  const arr: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
     <div>
-      <button onClick={() => setVisible(!visible)}>切换</button>
-      {arr.map((item) => (
-        <div key={item.toString()}>
-          <Animated {...animatedProps}>
-            <div>hello world {item}</div>
-          </Animated>
-        </div>
-      ))}
+      <Divider plain orientation="left">
+        home page
+      </Divider>
+      <List
+        loading={commentStatus === 'loading'}
+        itemLayout="horizontal"
+        dataSource={commentList}
+        renderItem={(item) => (
+          <List.Item>
+            <List.Item.Meta
+              avatar={<Avatar src={item.user_avatar} />}
+              title={<a href="https://ant.design">{item.title}</a>}
+              description={item.content}
+            />
+          </List.Item>
+        )}
+      />
     </div>
-  );
-};
+  )
+}
+
+export default HomePage

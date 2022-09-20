@@ -1,21 +1,36 @@
-import { FC, ReactElement } from "react";
-import { Link } from "react-router-dom";
-import ClickCounter from "@/components/ClickCounter";
-import ViewCounter from "@/components/ViewCounter";
-import ReduxCounter from "@/components/reduxCounter";
-import { getPosts } from "@/api/posts";
-import { Button } from "antd";
+import { FC, ReactElement, useEffect, useState } from 'react'
+import { apiGetCommentList } from '@/api/comment'
+import { Avatar, Card, List } from 'antd'
+import { Link } from 'react-router-dom'
 
 const IndexPage: FC = (): ReactElement => {
+  const [commentList, setCommentList] = useState<Array<CommentModel>>([])
+  useEffect(() => {
+    apiGetCommentList({}).then((res: ResponsePageResult<CommentModel>) => {
+      setCommentList(res.data)
+      console.log({ commentList })
+    })
+  }, [])
   return (
     <div>
-      <Link to="/about">aboutPage</Link>
-      <ClickCounter />
-      <ViewCounter />
-      <ReduxCounter />
-      <Button onClick={getPosts}>getPosts</Button>
+      <Card bordered={true}>
+        <List
+          itemLayout="horizontal"
+          dataSource={commentList}
+          renderItem={(item) => (
+            <List.Item>
+              <List.Item.Meta
+                avatar={<Avatar src={item.user_avatar} />}
+                title={<a href="https://ant.design">{item.title}</a>}
+                description={item.content}
+              />
+            </List.Item>
+          )}
+        />
+      </Card>
+      <Link to="/home">home</Link>
     </div>
-  );
-};
+  )
+}
 
 export default IndexPage;

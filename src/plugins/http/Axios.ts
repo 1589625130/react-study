@@ -1,33 +1,34 @@
-import axios, { AxiosRequestConfig } from "axios";
-import { message } from "antd";
+import axios, { AxiosRequestConfig } from 'axios'
+import { message } from 'antd'
 // import { CacheEnum } from "../../enum/CacheEnum";
-import { HttpEnum } from "@/enum/httpEnum";
+import { HttpEnum } from '@/enum/httpEnum'
 // import { RouteEnum } from "../../enum/RouteEnum";
 
 export default class Axios {
-  private instance;
+  private instance
 
   // private loading: any;
 
   constructor(config: AxiosRequestConfig) {
-    this.instance = axios.create(config);
-    this.interceptors();
+    this.instance = axios.create(config)
+    this.interceptors()
   }
 
-  public async request<T>(config: AxiosRequestConfig) {
+  public async request<T = CommentModel, D = Response<T>>(config: AxiosRequestConfig): Promise<D> {
     return new Promise(async (resolve, reject) => {
       try {
-        const response = await this.instance.request<T>(config);
-        resolve(response.data);
+        // @ts-ignore
+        const response = await this.instance.request<D>(config)
+        resolve(response.data)
       } catch (error) {
-        reject(error);
+        reject(error)
       }
-    }) as Promise<T>;
+    }) as Promise<D>
   }
 
   private interceptors() {
-    this.interceptorsRequest();
-    this.interceptorsResponse();
+    this.interceptorsRequest()
+    this.interceptorsResponse()
   }
 
   private interceptorsRequest() {
@@ -40,16 +41,16 @@ export default class Axios {
         //   });
         // errorStore().resetError();
         config.headers = {
-          Accept: "application/json",
+          Accept: 'application/json',
           // Authorization: `Bearer ${store.get(CacheEnum.TOKEN_NAME)}`,
           Authorization: `Bearer 1232`,
-        };
-        return config;
+        }
+        return config
       },
       (error: any) => {
-        return Promise.reject(error);
-      }
-    );
+        return Promise.reject(error)
+      },
+    )
   }
 
   private interceptorsResponse() {
@@ -57,42 +58,42 @@ export default class Axios {
       (response) => {
         // this.loading.close();
         if (response.data?.message) {
-          void message.success(response.data.message);
+          void message.success(response.data.message)
         }
-        return response;
+        return response
       },
       (error) => {
         // this.loading.close();
         const {
           response: { status, data },
-        } = error;
-        const { message } = data;
+        } = error
+        const { message } = data
 
         switch (status) {
           case HttpEnum.UNAUTHORIZED:
             // store.remove(CacheEnum.TOKEN_NAME);
             // void router.push({ name: RouteEnum.LOGIN });
-            break;
+            break
           case HttpEnum.BAD_REQUEST:
             // errorStore().setErrors(error.response.data.errors);
-            break;
+            break
           case HttpEnum.FORBIDDEN:
-            message.error(message ?? "没有操作权限");
-            break;
+            message.error(message ?? '没有操作权限')
+            break
           case HttpEnum.NOT_FOUND:
             // void router.push({ name: RouteEnum.NOT_FOUND });
-            break;
+            break
           case HttpEnum.TOO_MANY_REQUESTS:
-            message.error(message ?? "请示过于频繁，请稍候再试");
+            message.error(message ?? '请示过于频繁，请稍候再试')
 
-            break;
+            break
           default:
             if (message) {
-              message.error(message ?? "服务器错误");
+              message.error(message ?? '服务器错误')
             }
         }
-        return Promise.reject(error);
-      }
-    );
+        return Promise.reject(error)
+      },
+    )
   }
 }
