@@ -15,4 +15,4 @@ const Auth: FC<AuthProps> = ({ children, isAuth }): ReactElement => {
     return <Fragment>{children}</Fragment>
   }
 }
-export default Auth;
+export default Auth
