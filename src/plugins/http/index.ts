@@ -1,10 +1,9 @@
-import Axios from "./Axios";
+import Axios from './Axios'
 // import env from "@/utils/env";
 
 const http = new Axios({
-  // @ts-ignore
-  baseURL: import.meta.env.VITE_APP_BASE_API === 'development' ? 'dev-api' : '',
+  baseURL: '/api',
   timeout: 10000,
 })
 
-export default http;
+export default http
