@@ -4,7 +4,7 @@ import { resolve } from 'path'
 import { viteMockServe } from 'vite-plugin-mock'
 import { AntdResolve, createStyleImportPlugin } from 'vite-plugin-style-import'
 // https://vitejs.dev/config/
-
+//
 const pathResolve = (dir: string): string => resolve(__dirname, '.', dir)
 
 export default defineConfig({
