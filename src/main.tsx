@@ -1,21 +1,28 @@
-import React from 'react'
-// import ReactDOM from "react-dom/client";
+import React, { Suspense } from 'react'
 import { render } from 'react-dom'
-import './index.css'
+// import ReactDOM from "react-dom/client";
+import './index.less'
 import Router from './router'
-import 'antd/dist/antd.css'
 import store from './store'
 import { Provider } from 'react-redux'
+import { ConfigProvider } from 'antd'
+import zhCN from 'antd/es/locale/zh_CN'
 
 const app = document.getElementById('root')
+
+render(
+  <ConfigProvider locale={zhCN}>
+    <Provider store={store}>
+      <Suspense>
+        <Router />
+      </Suspense>
+    </Provider>
+  </ConfigProvider>,
+
+  app,
+)
 // ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 //   <Provider store={store}>
 //     <Router />
 //   </Provider>
 // );
-render(
-  <Provider store={store}>
-    <Router />
-  </Provider>,
-  app,
-)

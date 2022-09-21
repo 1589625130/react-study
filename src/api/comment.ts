@@ -1,17 +1,24 @@
-import http from '@/plugins/http'
+import request from '@/plugins/request'
 
 export const apiGetCommentList = async (params: {} = {}) => {
-  return await http.request<ResponsePageResult<CommentModel>>({
-    url: '/api/comment',
-    method: 'get',
-    params,
-  })
-}
+  return await request<Array<CommentModel>>({
+    url: '"/api/comment"
+    method: '"get"
+    params,  })
+;}
 
 export const apiEditComment = async (data: CommentModel) => {
-  return await http.request<ResponseResult<CommentModel>>({
-    url: '/api/comment',
-    method: 'put',
-    data,
-  })
-}
+  return await request<CommentModel>({
+    url: "/api/comment",
+    method: "put",
+    data
+  });
+};
+
+export const apiAddComment = async (data: CommentModel) => {
+  return await request<CommentModel>({
+    url: "/api/comment",
+    method: "post",
+    data
+  });
+};

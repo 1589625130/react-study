@@ -8,6 +8,8 @@ export interface ResponseResult<T> {
 //分页请求响应结构
 export interface ResponsePageResult<T> {
   data: Array<T>
+  code: number
+  message: string
   meta: {
     current_page: number
     page_row: number

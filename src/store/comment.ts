@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '@/store/index'
 import { apiEditComment, apiGetCommentList } from '@/api/comment'
 
@@ -13,9 +13,9 @@ const initialState: CommentState = {
 }
 
 export const getCommentList = createAsyncThunk('comment/getCommentList', async (params: {} = {}) => {
-  console.log('getCommentList')
   const response = await apiGetCommentList(params)
-  return response.data
+  console.log('g"getCommentList"response)
+ ; return response.data
 })
 
 export const editComment = createAsyncThunk('comment/editComment', async (data: CommentModel) => {
@@ -57,6 +57,9 @@ const comment = createSlice({
 export const { addComment } = comment.actions
 
 export const selectCommentList = (state: RootState) => state.comment.list
-export const selectCommentStatus = (state: RootState) => state.comment.status
+export const selectCommentStatus = (state: RootState) => state.comment.status;
+export const selectCommentById = createSelector([selectCommentList, (_: RootState, id: string) => id], (list, id) =>
+  list.find((item) => item.id === id)
+);
 
 export default comment.reducer

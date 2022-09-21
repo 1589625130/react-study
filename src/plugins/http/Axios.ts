@@ -14,7 +14,7 @@ export default class Axios {
     this.interceptors()
   }
 
-  public async request<T = CommentModel, D = Response<T>>(config: AxiosRequestConfig): Promise<D> {
+  public async request<T = CommentModel, D = ResponseData<T>>(config: AxiosRequestConfig): Promise<D> {
     return new Promise(async (resolve, reject) => {
       try {
         // @ts-ignore

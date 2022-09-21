@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const IndexPage: FC = (): ReactElement => {
   const [commentList, setCommentList] = useState<Array<CommentModel>>([])
   useEffect(() => {
-    apiGetCommentList({}).then((res: ResponsePageResult<CommentModel>) => {
+    apiGetCommentList({}).then((res: ResponseData<Array<CommentModel>>) => {
       setCommentList(res.data)
       console.log({ commentList })
     })
@@ -33,4 +33,4 @@ const IndexPage: FC = (): ReactElement => {
   )
 }
 
-export default IndexPage;
+export default IndexPage

@@ -33,12 +33,37 @@ export default [
       }
       return {
         data: comments,
+        code: 200,
+        message: 'success',
         meta: {
           current_page: 1,
           page_row: 10,
           total: 100,
           total_page: 10,
         },
+      }
+    },
+  },
+  {
+    url: '/api/comment',
+    method: 'put',
+    response: (): ResponseData<CommentModel> => {
+      return {
+        data: createComment(),
+        code: 200,
+        message: 'success',
+      }
+    },
+  },
+  {
+    url: '/api/comment',
+    method: 'post',
+    response: (req): ResponseData<CommentModel> => {
+      console.log({ req })
+      return {
+        data: createComment(),
+        code: 200,
+        message: 'success',
       }
     },
   },

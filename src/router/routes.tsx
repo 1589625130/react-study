@@ -1,14 +1,11 @@
 import { RouterType } from './type'
-import HomePage from '@/pages/HomePage'
-import LoginPage from '@/pages/Login'
-import AboutPage from '@/pages/AboutPage'
-import IndexPage from '@/pages/IndexPage'
-import AboutInfo from '@/pages/about/AboutInfo'
-// const IndexPage = lazy(() => import("../pages/IndexPage"));
-// const AboutPage = lazy(() => import("../pages/AboutPage"));
-// const LoginPage = lazy(() => import("../pages/Login"));
-// const AboutInfo = lazy(() => import("../pages/about/AboutInfo"));
-// const HomePage = lazy(() => import("../pages/HomePage"));
+import { lazy } from 'react'
+
+const IndexPage = lazy(() => import('../pages/IndexPage'))
+const AboutPage = lazy(() => import('../pages/AboutPage'))
+const LoginPage = lazy(() => import('../pages/Login'))
+const AboutInfo = lazy(() => import('../pages/about/AboutInfo'))
+const HomePage = lazy(() => import('../pages/HomePage'))
 const routes: Array<RouterType> = [
   {
     path: '/',
@@ -43,4 +40,4 @@ const routes: Array<RouterType> = [
     ],
   },
 ]
-export default routes;
+export default routes
