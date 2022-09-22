@@ -1,11 +1,11 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import { message } from 'antd'
 import { HttpEnum } from '@/enum/httpEnum'
+import env from '@/utils/env'
 
 const config: AxiosRequestConfig = {
-  baseURL: '',
-  timeout: 10000,
-}
+  baseURL: env.VITE_APP_ENV === 'd"dev" env.VITE_APP_BASE_API : ''""  timeout: 10000,
+
 
 const https = axios.create(config)
 

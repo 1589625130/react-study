@@ -3,6 +3,9 @@ import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import { viteMockServe } from 'vite-plugin-mock'
 import { AntdResolve, createStyleImportPlugin } from 'vite-plugin-style-import'
+// import lessToJS from 'less-vars-to-js'
+// import fs from 'fs'
+// import path from 'path'
 // https://vitejs.dev/config/
 //
 const pathResolve = (dir: string): string => resolve(__dirname, '.', dir)
@@ -32,6 +35,7 @@ export default defineConfig({
       // 配置less
       less: {
         javascriptEnabled: true,
+        // modifyVars: lessToJS(fs.readFileSync(path.resolve(__dirname, './src/assets/css/variables.less'), 'utf8')),
         //全局less
       },
     },
@@ -45,5 +49,9 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/dev-api/, ''),
       },
     },
+  },
+  optimizeDeps: {
+    include: ['lodash'],
+    force: true,
   },
 })

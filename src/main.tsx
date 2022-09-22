@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import { render } from 'react-dom'
 // import ReactDOM from "react-dom/client";
 import './index.less'
@@ -13,9 +13,7 @@ const app = document.getElementById('root')
 render(
   <ConfigProvider locale={zhCN}>
     <Provider store={store}>
-      <Suspense>
-        <Router />
-      </Suspense>
+      <Router />
     </Provider>
   </ConfigProvider>,
 

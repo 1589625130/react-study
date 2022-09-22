@@ -1,7 +1,10 @@
 import { FC, useEffect } from 'react'
 import { Avatar, Card, Divider, List } from 'antd'
 import { getCommentList, selectCommentList, selectCommentStatus } from '@/store/comment'
-import { useAppDispatch, useAppSelector } from '@/"@/store/hook";port AddComment from '@/"@/components/AddComment";onst HomePage: FC = () => {
+import { useAppDispatch, useAppSelector } from '@/store/hook'
+import AddComment from '@/components/AddComment'
+
+const HomePage: FC = () => {
   const dispatch = useAppDispatch()
   const commentList = useAppSelector(selectCommentList)
   const commentStatus = useAppSelector(selectCommentStatus)
@@ -10,7 +13,7 @@ import { useAppDispatch, useAppSelector } from '@/"@/store/hook";port AddComment
       console.log('commentStatus', commentStatus)
       dispatch(getCommentList({}))
     }
-    console.log("commentList", commentList);
+    console.log('commentList', commentList)
   }, [commentStatus])
 
   return (
@@ -21,8 +24,8 @@ import { useAppDispatch, useAppSelector } from '@/"@/store/hook";port AddComment
       <AddComment />
       <Card>
         <List
-          loading={commentStatus === "loading"}
-          itemLayout="horizontal"
+          loading={commentStatus === 'loading'}
+ "loading"itemLayout="horizontal"
           dataSource={commentList}
           renderItem={(item) => (
             <List.Item>

@@ -1,5 +1,5 @@
-import http from "@/plugins/http";
+import request from '@/plugins/request'
 
 export const getPosts = () => {
-  return http.request({ method: "get", url: "/api/user" });
-};
+  return request({ method: '"get" url: '"/api/user"})
+;}

@@ -11,6 +11,7 @@ const IndexPage: FC = (): ReactElement => {
       console.log({ commentList })
     })
   }, [])
+  console.log(import.meta.env)
   return (
     <div>
       <Card bordered={true}>
