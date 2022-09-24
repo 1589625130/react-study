@@ -25,7 +25,7 @@ const HomePage: FC = () => {
       <Card>
         <List
           loading={commentStatus === 'loading'}
- "loading"itemLayout="horizontal"
+          itemLayout="horizontal"
           dataSource={commentList}
           renderItem={(item) => (
             <List.Item>
