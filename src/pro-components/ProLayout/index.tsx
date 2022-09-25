@@ -1,9 +1,11 @@
-import { Layout } from 'antd'
-import { FC, ReactElement } from 'react'
-import GlobalHeader from '@/components/GlobalHeader/GlobalHeader'
-import './styles.less'
-import GlobalMenu from '@/components/GlobalMenu'
-import { Outlet } from 'react-router-dom'
+import { Layout } from "antd";
+import { FC, ReactElement } from "react";
+import GlobalHeader from "@/components/GlobalHeader/GlobalHeader";
+import "./styles.less";
+import GlobalMenu from "@/components/GlobalMenu";
+import { Outlet } from "react-router-dom";
+
+// useStyleRegister({ theme: {   },()=>( { prefix: 'pro-layout' })
 
 interface ProLayoutProps {
   children: ReactElement

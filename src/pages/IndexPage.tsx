@@ -1,7 +1,8 @@
 import { FC, ReactElement, useEffect, useState } from 'react'
 import { apiGetCommentList } from '@/api/comment'
-import { Avatar, Card, List } from 'antd'
+import { Avatar, Button, Card, List } from 'antd'
 import { Link } from 'react-router-dom'
+import { ModalForm } from '@ant-design/pro-components'
 
 const IndexPage: FC = (): ReactElement => {
   const [commentList, setCommentList] = useState<Array<CommentModel>>([])
@@ -14,6 +15,7 @@ const IndexPage: FC = (): ReactElement => {
   console.log(import.meta.env)
   return (
     <div>
+      <ModalForm trigger={<Button>添加</Button>}></ModalForm>
       <Card bordered={true}>
         <List
           itemLayout="horizontal"

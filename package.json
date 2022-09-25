@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/cssinjs": "0.0.0-alpha.45",
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-card": "^2.0.8",
     "@ant-design/pro-components": "2.x",
