@@ -1,36 +1,42 @@
 import { RouterType } from './type'
-import { lazyLoadLayouts, lazyLoadPage } from '@/utils'
+import { lazyLoadPage } from '@/utils'
+import Layouts from '@/layouts'
 
-const routes: Array<RouterType> = [
+export const routes: Array<RouterType> = [
   {
-    path: '/"/"    element: lazyLoadLayouts(),
-    name: 'm"mainLayout"    title: '首"首页"    children: [
+    path: '/',
+    element: <Layouts />,
+    name: 'mainLayout',
+    title: '首页',
+    children: [
       {
-        path: ''""        name: 'i"index"        element: lazyLoadPage('h"home"
-        title: '首"首页"        isAuth: true,
-     },
+        path: '/',
+        name: 'index',
+        element: lazyLoadPage('home'),
+        title: '首页',
+        isAuth: true,
+      },
       {
-        path: "/home",
-        name: "home",
-        title: "主页",
-        element: lazyLoadPage("home"),
+        path: '/home',
+        name: 'home',
+        title: '主页',
+        element: lazyLoadPage('home'),
         isAuth: false,
       },
       {
-        path: "/about",
-        name: "about",
-        title: "关于",
-        element: lazyLoadPage("about"),
+        path: '/about',
+        name: 'about',
+        title: '关于',
+        element: lazyLoadPage('about'),
         isAuth: true,
       },
     ],
   },
   {
-    path: "/login",
-    name: "login",
-    element: lazyLoadPage("login"),
-    title: "登录",
-    isAuth: false,
-  },
+    path:"/login"',
+    name:"login"',
+    element: lazyLoadPage"login"'),
+    title:"登录"',
+    isAuth: fals,
+  ,
 ]
-export default routes

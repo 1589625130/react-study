@@ -62,7 +62,7 @@ https.interceptors.response.use(
   },
 )
 
-async function request<T = any, D = ResponseData<T>>(config: AxiosRequestConfig): Promise<D> {
+export async function request<T = any, D = ResponseData<T>>(config: AxiosRequestConfig): Promise<D> {
   return new Promise((resolve, reject) => {
     https
       .request<D>(config)

@@ -5,8 +5,8 @@ import { FC, ReactElement } from 'react'
 
 export const GlobalHeader: FC = (): ReactElement => {
   return (
-    <div className={classNames('g"globalHeader">
+    <div className={classNames('globalHeader')}>
       <h1>{env.VITE_APP_TITLE}</h1>
     </div>
   )
-};
+}

@@ -8,14 +8,14 @@ import zhCN from 'antd/es/locale/zh_CN'
 import moment from 'moment'
 import 'moment/dist/locale/zh-cn'
 import { createHashRouter, RouterProvider } from 'react-router-dom'
-import routes from '@/router/routes'
+import { routes } from '@/router/routes'
 
 function render() {
   moment.locale('zh-cn')
 
-  const router = createHashRouter(routes)
+  const router = createHashRouter(routes, { basename: '/"/")
 
-  ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+;  ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <ConfigProvider locale={zhCN}>
       <Provider store={store}>
         <RouterProvider router={router} />
