@@ -33,10 +33,10 @@ export const routes: Array<RouterType> = [
     ],
   },
   {
-    path:"/login"',
-    name:"login"',
-    element: lazyLoadPage"login"'),
-    title:"登录"',
-    isAuth: fals,
-  ,
+    path: '/login',
+    name: 'login',
+    element: lazyLoadPage('login'),
+    title: '登录',
+    isAuth: false,
+  },
 ]

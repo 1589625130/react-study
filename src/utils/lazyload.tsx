@@ -13,8 +13,7 @@ export const lazyLoadLayouts: FC = (): ReactElement => {
     </Suspense>
   )
 }
-;
-e;xport const lazyLoadPage = (pagePath: string) => {
+export const lazyLoadPage = (pagePath: string) => {
   const Component = lazy(modules[`../pages/${pagePath}/index.tsx`])
 
   return (
