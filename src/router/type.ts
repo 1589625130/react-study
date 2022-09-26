@@ -1,8 +1,6 @@
-import { ReactNode } from 'react'
+import type { RouteObject } from 'react-router-dom'
 
-export interface RouterType {
-  path: string
-  element: ReactNode | null
+export interface RouterType extends RouteObject {
   children?: Array<RouterType>
   name: string
   isAuth?: boolean

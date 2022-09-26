@@ -7,14 +7,10 @@
       "DOM.Iterable",
       "ESNext"
     ],
-    "types": [
-      "vite/client"
-    ],
     "allowJs": false,
     "skipLibCheck": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
-    "noImplicitAny": false,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
@@ -23,6 +19,11 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": ".",
+    "types": [
+      "vite/client"
+    ],
+    "noImplicitAny": false,
     "paths": {
       "@/*": [
         "./src/*"

@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import ProLayout from '@/pro-components/ProLayout'
+import { ProLayout } from '@ant-design/pro-components'
 import { FC, ReactElement } from 'react'
 
 const MainLayout: FC = (): ReactElement => {

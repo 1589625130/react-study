@@ -11,7 +11,7 @@ const getRoutePath = (path: Array<string>): string => {
   return routePath
 }
 
-const GlobalMenu: FC = (): ReactElement => {
+export const GlobalMenu: FC = (): ReactElement => {
   const { route } = useRoute()
   const navigate = useNavigate()
   const location = useLocation()
@@ -29,5 +29,3 @@ const GlobalMenu: FC = (): ReactElement => {
       items={route}></Menu>
   )
 }
-
-export default GlobalMenu
