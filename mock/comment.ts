@@ -1,6 +1,7 @@
 import { MockMethod } from 'vite-plugin-mock'
 import Mock from 'mockjs'
 import { ResponsePageResult } from './api'
+import { ResponseData } from '@/typings'
 
 interface CommentModel {
   id: string
@@ -26,11 +27,10 @@ export default [
   {
     url: '/api/comment',
     method: 'get',
+    // statusCode: 403,
     response: (req): ResponsePageResult<CommentModel> => {
-      console.log({ query: req.query })
-
       const comments: Array<CommentModel> = []
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < req.query.page_row; i++) {
         comments.push(createComment())
       }
       return {

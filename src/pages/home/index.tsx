@@ -1,38 +1,49 @@
-import { FC } from 'react'
-import { Avatar, List } from 'antd'
-import { useQuery } from '@tanstack/react-query'
+import { FC, useState } from 'react'
+import { Avatar, List, Button, message } from 'antd'
+import { useQuery, UseErrorBoundary } from '@tanstack/react-query'
 import { apiGetCommentList } from '@/api'
 import { ProCard } from '@ant-design/pro-components'
 import { CommentModel } from '@/typings'
+import _ from 'lodash'
+import { AxiosError } from 'axios'
 
 const HomePage: FC = () => {
-  // const dispatch = useAppDispatch()
-  // const commentList = useAppSelector(selectCommentList)
-  // const commentStatus = useAppSelector(selectCommentStatus)
-  // useEffect(() => {
-  //   if (commentStatus === 'idle') {
-  //     console.log('commentStatus', commentStatus)
-  //     dispatch(getCommentList({ page: 1, page_row: 10 }))
-  //   }
-  //   console.log('commentList', commentList)
-  // }, [commentStatus])
+  const [queryKey, setQueryKey] = useState<Array<number>>([1, 10])
 
-  async function getData(): Promise<Array<CommentModel>> {
-    const res = await apiGetCommentList({ page: 1, page_row: 10 })
+  async function getData({ queryKey }): Promise<Array<CommentModel>> {
+    const [, page, page_row] = queryKey
+    const res = await apiGetCommentList({ page, page_row })
     return res.data
   }
 
-  const { data, isLoading, isError, error } = useQuery(['commentData'], getData, {
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-    refetchInterval: false,
-    refetchIntervalInBackground: false,
+  const { data, isLoading, refetch } = useQuery<Array<CommentModel>>(['commentData', ...queryKey], getData, {
+    staleTime: 1000 * 60 * 5,
   })
 
   return (
     <div>
       <ProCard loading={isLoading}>
+        <Button
+          type="primary"
+          onClick={() => {
+            setQueryKey([_.random(1, 100), _.random(10, 20)])
+          }}>
+          随机
+        </Button>
+        <Button
+          type="dashed"
+          onClick={() => {
+            refetch()
+          }}>
+          刷新
+        </Button>
+        <Button
+          type="link"
+          onClick={() => {
+            setQueryKey([1, 10])
+          }}>
+          重置
+        </Button>
         <List
           itemLayout="horizontal"
           dataSource={data}

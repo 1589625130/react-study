@@ -15,7 +15,6 @@ https.interceptors.request.use(
     config.headers = {
       Accept: 'application/json',
     }
-    console.log({ config })
     return config
   },
   (error: any) => {
@@ -34,7 +33,7 @@ https.interceptors.response.use(
     const {
       response: { status, data },
     } = error
-    const { message } = data
+    const { message: msg } = data
 
     switch (status) {
       case HttpEnum.UNAUTHORIZED:
@@ -44,19 +43,20 @@ https.interceptors.response.use(
       case HttpEnum.BAD_REQUEST:
         // errorStore().setErrors(error.response.data.errors);
         break
-      case HttpEnum.FORBIDDEN:
-        message.error(message ?? '没有操作权限')
+      case 403:
+        console.log('进入403错误')
+        // message.error('没有操作权限')
         break
       case HttpEnum.NOT_FOUND:
         // void router.push({ name: RouteEnum.NOT_FOUND });
         break
       case HttpEnum.TOO_MANY_REQUESTS:
-        message.error(message ?? '请示过于频繁，请稍候再试')
+        message.error(msg ?? '请示过于频繁，请稍候再试')
 
         break
       default:
         if (message) {
-          message.error(message ?? '服务器错误')
+          message.error(msg ?? '服务器错误')
         }
     }
     return Promise.reject(error)
