@@ -1,32 +1,41 @@
-import { FC, useEffect } from 'react'
-import { Avatar, Card, Divider, List } from 'antd'
-import { getCommentList, selectCommentList, selectCommentStatus } from '@/store/comment'
-import { useAppDispatch, useAppSelector } from '@/store/hook'
-import AddComment from '@/components/AddComment'
+import { FC } from 'react'
+import { Avatar, List } from 'antd'
+import { useQuery } from '@tanstack/react-query'
+import { apiGetCommentList } from '@/api'
+import { ProCard } from '@ant-design/pro-components'
+import { CommentModel } from '@/typings'
 
 const HomePage: FC = () => {
-  const dispatch = useAppDispatch()
-  const commentList = useAppSelector(selectCommentList)
-  const commentStatus = useAppSelector(selectCommentStatus)
-  useEffect(() => {
-    if (commentStatus === 'idle') {
-      console.log('commentStatus', commentStatus)
-      dispatch(getCommentList({}))
-    }
-    console.log('commentList', commentList)
-  }, [commentStatus])
+  // const dispatch = useAppDispatch()
+  // const commentList = useAppSelector(selectCommentList)
+  // const commentStatus = useAppSelector(selectCommentStatus)
+  // useEffect(() => {
+  //   if (commentStatus === 'idle') {
+  //     console.log('commentStatus', commentStatus)
+  //     dispatch(getCommentList({ page: 1, page_row: 10 }))
+  //   }
+  //   console.log('commentList', commentList)
+  // }, [commentStatus])
+
+  async function getData(): Promise<Array<CommentModel>> {
+    const res = await apiGetCommentList({ page: 1, page_row: 10 })
+    return res.data
+  }
+
+  const { data, isLoading, isError, error } = useQuery(['commentData'], getData, {
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    refetchInterval: false,
+    refetchIntervalInBackground: false,
+  })
 
   return (
     <div>
-      <Divider plain orientation="left">
-        home page
-      </Divider>
-      <AddComment />
-      <Card>
+      <ProCard loading={isLoading}>
         <List
-          loading={commentStatus === 'loading'}
           itemLayout="horizontal"
-          dataSource={commentList}
+          dataSource={data}
           renderItem={(item) => (
             <List.Item>
               <List.Item.Meta
@@ -37,7 +46,7 @@ const HomePage: FC = () => {
             </List.Item>
           )}
         />
-      </Card>
+      </ProCard>
     </div>
   )
 }

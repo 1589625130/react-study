@@ -1,4 +1,4 @@
-interface ResponseData<T> {
+export interface ResponseData<T> {
   data: T
   code: number
   message: string
@@ -10,15 +10,15 @@ interface ResponseData<T> {
   }
 }
 
-//请求响应结构
-interface ResponseResult<T> {
+// 请求响应结构
+export interface ResponseResult<T> {
   data: T
   code: number
   msg: string
 }
 
-//分页请求响应结构
-interface ResponsePageResult<T> {
+// 分页请求响应结构
+export interface ResponsePageResult<T> {
   data: Array<T>
   meta: {
     current_page: number
@@ -26,4 +26,11 @@ interface ResponsePageResult<T> {
     total: number
     total_page: number
   }
+}
+
+// 请求参数结构
+export interface RequestParams {
+  [key: string]: any
+  page: number
+  page_row: number
 }

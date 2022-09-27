@@ -26,7 +26,9 @@ export default [
   {
     url: '/api/comment',
     method: 'get',
-    response: (): ResponsePageResult<CommentModel> => {
+    response: (req): ResponsePageResult<CommentModel> => {
+      console.log({ query: req.query })
+
       const comments: Array<CommentModel> = []
       for (let i = 0; i < 10; i++) {
         comments.push(createComment())

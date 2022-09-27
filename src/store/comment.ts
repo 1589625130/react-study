@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '@/store/index'
 import { apiEditComment, apiGetCommentList } from '@/api/comment'
+import { RequestParams, CommentModel } from '@/typings'
 
 interface CommentState {
   list: Array<CommentModel>
@@ -12,7 +13,7 @@ const initialState: CommentState = {
   status: 'idle',
 }
 
-export const getCommentList = createAsyncThunk('comment/getCommentList', async (params: {} = {}) => {
+export const getCommentList = createAsyncThunk('comment/getCommentList', async (params: RequestParams) => {
   const response = await apiGetCommentList(params)
   return response.data
 })

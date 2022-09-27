@@ -1,6 +1,7 @@
 import request from '@/plugins/request'
+import { CommentModel, RequestParams } from '@/typings'
 
-export const apiGetCommentList = async (params: {} = {}) => {
+export const apiGetCommentList = async (params: RequestParams) => {
   return await request<Array<CommentModel>>({
     url: '/api/comment',
     method: 'get',

@@ -15,6 +15,7 @@ https.interceptors.request.use(
     config.headers = {
       Accept: 'application/json',
     }
+    console.log({ config })
     return config
   },
   (error: any) => {
@@ -25,7 +26,7 @@ https.interceptors.request.use(
 https.interceptors.response.use(
   (response) => {
     if (response.data?.message) {
-      void message.success(response.data.message)
+      message.success(response.data.message).then()
     }
     return response
   },
